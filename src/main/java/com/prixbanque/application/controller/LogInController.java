@@ -23,8 +23,8 @@ public class LogInController {
      * @return liste de tous les clients
      */
     @GetMapping(value={"/login", "/"})
-    public String getClients(Model model) {
-        return "/login"; //$NON-NLS-1$
+    public static String login(Model model) {
+        return "login"; //$NON-NLS-1$
     }
     
     
