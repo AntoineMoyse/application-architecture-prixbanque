@@ -15,6 +15,7 @@ public class Client {
 	private String firstname;
 	private String lastname;
 	private String mailadress;
+	private String pwd;
 	
 	/**
 	 * Constructeur par défaut
@@ -84,6 +85,20 @@ public class Client {
 		this.mailadress = mailadress;
 	}
 	
+	/**
+	 * @return le mdp
+	 */
+	public String getPwd() {
+		return this.pwd;
+	}
+
+	/**
+	 * @param pwd
+	 */
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
 	/**
 	 * 
 	 */

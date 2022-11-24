@@ -22,10 +22,11 @@ public class LogInController {
      * @param model 
      * @return liste de tous les clients
      */
-    @GetMapping("/Clients")
+    @GetMapping(value={"/login", "/"})
     public String getClients(Model model) {
-    	model.addAttribute("clients", this.clientrepo.findAll()); //$NON-NLS-1$
-        return "/Clients"; //$NON-NLS-1$
+        return "/login"; //$NON-NLS-1$
     }
+    
+    
 	
 }
