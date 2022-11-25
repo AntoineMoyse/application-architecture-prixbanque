@@ -15,5 +15,5 @@ public interface ClientRepository extends MongoRepository<Client, String>{
 	 * @param mailadress
 	 * @return le client associé à l'adresse mail
 	 */
-    //Client findClientbymailadress(String mailadress);
+    Client findClientBymailadress(String mailadress);
 }

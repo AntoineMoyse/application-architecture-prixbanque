@@ -1,6 +1,9 @@
 package com.prixbanque.application.model;
 
+import java.util.Set;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -17,6 +20,9 @@ public class Client {
 	private String mailadress;
 	private String pwd;
 	
+	@DBRef
+	private Set<Role> role;
+	
 	/**
 	 * Constructeur par défaut
 	 */
@@ -28,12 +34,14 @@ public class Client {
 	 * @param lastname
 	 * @param mailadress
 	 *  Constructeur
+	 * @param pwd 
 	 */
-	public Client(String firstname, String lastname, String mailadress)
+	public Client(String firstname, String lastname, String mailadress, String pwd)
 	{
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.mailadress = mailadress;
+		this.pwd = pwd;
 	}
 	
 	/**
@@ -97,6 +105,20 @@ public class Client {
 	 */
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+	/**
+	 * @return le role
+	 */
+	public Set<Role> getRole() {
+		return this.role;
+	}
+
+	/**
+	 * @param role
+	 */
+	public void setRole(Set<Role> role) {
+		this.role = role;
 	}
 
 	/**

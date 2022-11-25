@@ -14,7 +14,7 @@ public class HelloController {
 	 * Page des clients
 	 */
 	@RequestMapping(value = "/hello")
-	   public static String hello() {
+	   public String hello() {
 	      return "hello"; //$NON-NLS-1$
 	   }
 }

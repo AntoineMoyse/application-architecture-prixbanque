@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
 	/**
-	 * @return
+	 * @return vue index
 	 */
 	@GetMapping("/index")
 	public String index()
