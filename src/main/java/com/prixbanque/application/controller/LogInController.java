@@ -1,7 +1,5 @@
 package com.prixbanque.application.controller;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
@@ -66,21 +64,6 @@ public class LogInController {
             modelAndView.setViewName("login"); //$NON-NLS-1$
 
         }
-        return modelAndView;
-    }
-    
-    /**
-     * @return vue dashboard
-     */
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView dashboard() {
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Client client = this.loginservice.findClientBymailadress(auth.getName());
-        modelAndView.addObject("currentUser", client); //$NON-NLS-1$
-        modelAndView.addObject("fullName", "Welcome " + client.getFirstname()); //$NON-NLS-1$ //$NON-NLS-2$
-        modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role"); //$NON-NLS-1$ //$NON-NLS-2$
-        modelAndView.setViewName("dashboard"); //$NON-NLS-1$
         return modelAndView;
     }
     
