@@ -88,7 +88,7 @@ public class LogInController {
         modelAndView.addObject("currentUser", client);
         modelAndView.addObject("fullName", "Welcome " + client.getFirstname());
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("dashboard");
+        modelAndView.setViewName("solde");
         return modelAndView;
     }
 }
