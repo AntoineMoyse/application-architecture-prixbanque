@@ -29,7 +29,6 @@ public class Client {
 	public Client() {}
 	
 	/**
-	 * @param id
 	 * @param firstname
 	 * @param lastname
 	 * @param mailadress

@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author antoine
  *
  */
-@Document(collection="role")
+@Document("role")
 public class Role {
 
 	@Id
