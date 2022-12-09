@@ -38,6 +38,8 @@ public class LoginService implements UserDetailsService {
 	@Autowired
 	public BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	public LoginService(){}
+
 	/**
 	 * @param email
 	 * @return client associé à l'adresse mail
@@ -51,7 +53,7 @@ public class LoginService implements UserDetailsService {
 	 */
 	public void newClient(Client client) {
 	    client.setPwd(bCryptPasswordEncoder.encode(client.getPwd()));
-	    Role userRole = this.rolerepo.findByRole("ADMIN"); //$NON-NLS-1$
+	    Role userRole = this.rolerepo.findByRole("USER"); //$NON-NLS-1$
 	    client.setRole(new HashSet<>(Arrays.asList(userRole)));
 	    this.clientrepo.save(client);
 	}

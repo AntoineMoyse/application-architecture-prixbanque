@@ -1,5 +1,8 @@
 package com.prixbanque.application;
 
+import com.prixbanque.application.model.Solde;
+import com.prixbanque.application.repository.ClientRepository;
+import com.prixbanque.application.repository.SoldeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +10,10 @@ import org.springframework.context.annotation.Bean;
 
 import com.prixbanque.application.model.Role;
 import com.prixbanque.application.repository.RoleRepository;
+import com.prixbanque.application.model.Client;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * @author antoine
@@ -25,7 +32,7 @@ public class Application{
 	
 	@Bean
 	static
-	CommandLineRunner init(RoleRepository roleRepository) {
+	CommandLineRunner init(RoleRepository roleRepository, ClientRepository clientrepo, SoldeRepository solderepo) {
 
 	    return args -> {
 
@@ -42,6 +49,20 @@ public class Application{
 	            newUserRole.setRole("USER"); //$NON-NLS-1$
 	            roleRepository.save(newUserRole);
 	        }
+
+			Client client = clientrepo.findClientBymailadress("user.test@dum.com");
+			if(client == null){
+				Client newclient = new Client();
+				newclient.setPwd("password");
+				newclient.setRole(new HashSet<>(Arrays.asList(userRole)));
+				newclient.setFirstname("User");
+				newclient.setLastname("Test");
+				newclient.setMailadress("user.test@dum.com");
+				clientrepo.save(newclient);
+
+				Solde newsolde = new Solde(50000.0f, newclient);
+				solderepo.save(newsolde);
+			}
 	    };
 
 	}

@@ -10,11 +10,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author antoine
  * Modèle des clients
  */
-@Document("client")
+@Document(collection="client")
 public class Client {
 
 	@Id
 	private String id;
+
 	private String firstname;
 	private String lastname;
 	private String mailadress;

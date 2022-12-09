@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author antoine
  * Modèle des virements
  */
-@Document("virement")
+@Document(collection="virement")
 public class Virement {
 
     @Id
