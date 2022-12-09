@@ -1,5 +1,7 @@
 package com.prixbanque.application.controller;
 
+import com.prixbanque.application.model.Solde;
+import com.prixbanque.application.service.SoldeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +24,9 @@ public class LogInController {
 
     @Autowired
     private LoginService loginservice;
+
+    @Autowired
+    private SoldeService soldeservice;
 	
     /**
      * @return vue login
@@ -62,10 +67,10 @@ public class LogInController {
             modelAndView.setViewName("register"); //$NON-NLS-1$
         } else {
         	this.loginservice.newClient(client);
+            this.soldeservice.newSolde(10000.00f, client);
             modelAndView.addObject("successMessage", "User has been registered successfully"); //$NON-NLS-1$ //$NON-NLS-2$
             modelAndView.addObject("client", new Client()); //$NON-NLS-1$
             modelAndView.setViewName("login"); //$NON-NLS-1$
-
         }
         return modelAndView;
     }
@@ -77,18 +82,6 @@ public class LogInController {
     public ModelAndView hello() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hello"); //$NON-NLS-1$
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView dashboard() {
-        ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Client client = loginservice.findClientBymailadress(auth.getName());
-        modelAndView.addObject("currentUser", client);
-        modelAndView.addObject("fullName", "Welcome " + client.getFirstname());
-        modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("solde");
         return modelAndView;
     }
 }

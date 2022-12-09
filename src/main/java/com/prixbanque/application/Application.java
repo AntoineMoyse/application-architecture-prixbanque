@@ -3,6 +3,7 @@ package com.prixbanque.application;
 import com.prixbanque.application.model.Solde;
 import com.prixbanque.application.repository.ClientRepository;
 import com.prixbanque.application.repository.SoldeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import com.prixbanque.application.model.Role;
 import com.prixbanque.application.repository.RoleRepository;
 import com.prixbanque.application.model.Client;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -21,6 +23,7 @@ import java.util.HashSet;
  */
 @SpringBootApplication
 public class Application{
+
 	/**
 	 * @param args
 	 * Main du programme
@@ -29,7 +32,7 @@ public class Application{
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-	
+
 	@Bean
 	static
 	CommandLineRunner init(RoleRepository roleRepository, ClientRepository clientrepo, SoldeRepository solderepo) {
@@ -52,15 +55,16 @@ public class Application{
 
 			Client client = clientrepo.findClientBymailadress("user.test@dum.com");
 			if(client == null){
+				BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 				Client newclient = new Client();
-				newclient.setPwd("password");
+				newclient.setPwd(bCryptPasswordEncoder.encode("password"));
 				newclient.setRole(new HashSet<>(Arrays.asList(userRole)));
 				newclient.setFirstname("User");
 				newclient.setLastname("Test");
 				newclient.setMailadress("user.test@dum.com");
 				clientrepo.save(newclient);
 
-				Solde newsolde = new Solde(50000.0f, newclient);
+				Solde newsolde = new Solde(50000.00f, newclient);
 				solderepo.save(newsolde);
 			}
 	    };
