@@ -16,6 +16,8 @@ public class Virement {
     private Client ClientPayeur;
     private Client ClientReceveur;
 
+    public Virement() {}
+
     public Virement(float montant, Client clientPayeur, Client clientReceveur) {
         this.montant = montant;
         ClientPayeur = clientPayeur;

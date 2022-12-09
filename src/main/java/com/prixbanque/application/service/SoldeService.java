@@ -22,7 +22,6 @@ public class SoldeService {
     }
 
     public void newSolde(float montant, Client client){
-        montant = 10000.0f;
         Solde newsolde = new Solde(montant, client);
         solderepo.save(newsolde);
     }
