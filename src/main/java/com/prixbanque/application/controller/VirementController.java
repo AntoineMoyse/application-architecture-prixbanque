@@ -5,14 +5,17 @@ import com.prixbanque.application.model.Virement;
 import com.prixbanque.application.service.LoginService;
 import com.prixbanque.application.service.VirementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 /**
@@ -20,13 +23,18 @@ import javax.validation.Valid;
  *Controller pour les virements
  */
 @Controller
+@Component("VirementController")
 public class VirementController {
 
     @Autowired
-    private VirementService virementservice;
+    @Lazy
+    public VirementService virementservice;
 
-    @Autowired
-    private LoginService loginservice;
+    @Resource(name="SoldeController")
+    public SoldeController soldecontroller;
+
+    @Resource(name="LogInController")
+    private LogInController logincontroller;
 
     /**
      * @return vue virement
@@ -42,11 +50,11 @@ public class VirementController {
     public ModelAndView newClient(float montant, String mail) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Client client = this.loginservice.findClientBymailadress(auth.getName());
+        Client client = this.logincontroller.loginservice.findClientBymailadress(auth.getName());
         Virement newvirement = new Virement();
         newvirement.setClientPayeur(client);
         newvirement.setMontant(montant);
-        newvirement.setClientReceveur(this.loginservice.findClientBymailadress(mail));
+        newvirement.setClientReceveur(this.logincontroller.loginservice.findClientBymailadress(mail));
         this.virementservice.newVirement(newvirement);
         modelAndView.addObject("successMessage", "Virement has been done successfully"); //$NON-NLS-1$ //$NON-NLS-2$
         modelAndView.addObject("virement", new Virement()); //$NON-NLS-1$

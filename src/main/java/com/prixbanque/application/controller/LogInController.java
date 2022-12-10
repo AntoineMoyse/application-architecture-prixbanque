@@ -3,13 +3,19 @@ package com.prixbanque.application.controller;
 import com.prixbanque.application.model.Solde;
 import com.prixbanque.application.service.SoldeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.prixbanque.application.model.Client;
@@ -20,14 +26,17 @@ import com.prixbanque.application.service.LoginService;
  * Controller LogIn
  */
 @Controller
+@Component("LogInController")
 public class LogInController {
 
     @Autowired
-    private LoginService loginservice;
+    public LoginService loginservice;
 
     @Autowired
-    private SoldeService soldeservice;
-	
+    @Qualifier("SoldeController")
+    @Lazy
+    private SoldeController soldecontroller;
+
     /**
      * @return vue login
      */
@@ -67,7 +76,7 @@ public class LogInController {
             modelAndView.setViewName("register"); //$NON-NLS-1$
         } else {
         	this.loginservice.newClient(client);
-            this.soldeservice.newSolde(10000.00f, client);
+            this.soldecontroller.soldeservice.newSolde(10000.00f, client);
             modelAndView.addObject("successMessage", "User has been registered successfully"); //$NON-NLS-1$ //$NON-NLS-2$
             modelAndView.addObject("client", new Client()); //$NON-NLS-1$
             modelAndView.setViewName("login"); //$NON-NLS-1$

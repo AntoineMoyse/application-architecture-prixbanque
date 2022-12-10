@@ -15,7 +15,8 @@ import org.springframework.stereotype.Service;
 public class SoldeService {
 
     @Autowired
-    private SoldeRepository solderepo;
+    public SoldeRepository solderepo;
+
 
     public Solde findSoldeByClient(Client client){
         return this.solderepo.findSoldeByClient(client);
