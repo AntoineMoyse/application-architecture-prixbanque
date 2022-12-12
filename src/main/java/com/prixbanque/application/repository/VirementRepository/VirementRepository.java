@@ -1,4 +1,4 @@
-package com.prixbanque.application.repository;
+package com.prixbanque.application.repository.VirementRepository;
 
 import com.prixbanque.application.model.Virement;
 import com.prixbanque.application.model.Client;

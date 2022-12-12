@@ -7,20 +7,18 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.prixbanque.application.model.Client;
 import com.prixbanque.application.model.Role;
-import com.prixbanque.application.repository.ClientRepository;
-import com.prixbanque.application.repository.RoleRepository;
+import com.prixbanque.application.repository.ClientRepository.ClientRepository;
+import com.prixbanque.application.repository.ClientRepository.RoleRepository;
 
 /**
  * @author antoine

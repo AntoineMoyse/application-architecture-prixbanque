@@ -4,13 +4,9 @@ import com.prixbanque.application.controller.VirementController;
 import com.prixbanque.application.model.Client;
 import com.prixbanque.application.model.Solde;
 import com.prixbanque.application.model.Virement;
-import com.prixbanque.application.repository.SoldeRepository;
-import com.prixbanque.application.repository.VirementRepository;
+import com.prixbanque.application.repository.VirementRepository.VirementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @author antoine
@@ -40,8 +36,10 @@ public class VirementService {
 
     private void echange(float montant, Client clientpayeur, Client clientreceveur){
         Solde soldepayeur = this.virementController.soldecontroller.soldeservice.findSoldeByClient(clientpayeur);
+        soldepayeur.setClient(clientpayeur);
         soldepayeur.setMontant(soldepayeur.getMontant() - montant);
         Solde soldereceveur = this.virementController.soldecontroller.soldeservice.solderepo.findSoldeByClient(clientreceveur);
+        soldereceveur.setClient(clientreceveur);
         soldereceveur.setMontant(soldereceveur.getMontant() + montant);
         this.virementController.soldecontroller.soldeservice.solderepo.save(soldepayeur);
         this.virementController.soldecontroller.soldeservice.solderepo.save(soldereceveur);

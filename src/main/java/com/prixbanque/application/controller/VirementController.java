@@ -47,7 +47,7 @@ public class VirementController {
     }
 
     @RequestMapping(value = "/virement", method = RequestMethod.POST)
-    public ModelAndView newClient(float montant, String mail) {
+    public ModelAndView newVirement(float montant, String mail) {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Client client = this.logincontroller.loginservice.findClientBymailadress(auth.getName());

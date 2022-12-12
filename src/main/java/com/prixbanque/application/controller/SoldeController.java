@@ -30,8 +30,7 @@ public class SoldeController {
     @Autowired
     public SoldeService soldeservice;
 
-    @Autowired
-    @Qualifier("LogInController")
+    @Resource(name="LogInController")
     private LogInController logincontroller;
 
     /**

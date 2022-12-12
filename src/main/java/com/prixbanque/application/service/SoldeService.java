@@ -2,7 +2,7 @@ package com.prixbanque.application.service;
 
 import com.prixbanque.application.model.Client;
 import com.prixbanque.application.model.Solde;
-import com.prixbanque.application.repository.SoldeRepository;
+import com.prixbanque.application.repository.SoldeRepository.SoldeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

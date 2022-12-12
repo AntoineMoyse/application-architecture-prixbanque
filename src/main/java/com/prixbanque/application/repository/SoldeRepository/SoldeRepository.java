@@ -1,4 +1,4 @@
-package com.prixbanque.application.repository;
+package com.prixbanque.application.repository.SoldeRepository;
 
 import com.prixbanque.application.model.Client;
 import com.prixbanque.application.model.Solde;

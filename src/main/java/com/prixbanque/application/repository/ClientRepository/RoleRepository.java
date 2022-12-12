@@ -1,4 +1,4 @@
-package com.prixbanque.application.repository;
+package com.prixbanque.application.repository.ClientRepository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

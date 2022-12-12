@@ -1,16 +1,15 @@
 package com.prixbanque.application;
 
 import com.prixbanque.application.model.Solde;
-import com.prixbanque.application.repository.ClientRepository;
-import com.prixbanque.application.repository.SoldeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.prixbanque.application.repository.ClientRepository.ClientRepository;
+import com.prixbanque.application.repository.SoldeRepository.SoldeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.prixbanque.application.model.Role;
-import com.prixbanque.application.repository.RoleRepository;
+import com.prixbanque.application.repository.ClientRepository.RoleRepository;
 import com.prixbanque.application.model.Client;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -23,7 +22,6 @@ import java.util.HashSet;
  */
 @SpringBootApplication
 public class Application{
-
 	/**
 	 * @param args
 	 * Main du programme
